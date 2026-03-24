@@ -12,10 +12,10 @@ from concurrent.futures import ThreadPoolExecutor
 MAX_WORKERS = 5
 
 COL_CANDIDATES = {
-    "url":       ["URL", "Url", "url", "Link", "Lien"],
-    "invoice":   ["Num Facture", "Invoice Number", "Invoice", "Facture", "Num Invoice"],
-    "firstname": ["Prénom", "Firstname", "First Name", "First_Name", "Prenom"],
-    "lastname":  ["Nom", "Lastname", "Last Name", "Last_Name", "Name"],
+    "url":       ["URL", "Url", "url", "Link", "Lien", "Invoice link"],
+    "invoice":   ["Num Facture", "Invoice Number", "Invoice", "Facture", "Num Invoice", "Invoice number"],
+    "firstname": ["Prénom", "Firstname", "First Name", "First_Name", "Prenom", "Fisrt name"],
+    "lastname":  ["Nom", "Lastname", "Last Name", "Last_Name", "Name", "Last name"],
 }
 
 def detect_col(df, candidates):
