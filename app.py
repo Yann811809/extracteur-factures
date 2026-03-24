@@ -9,11 +9,20 @@ import io
 from concurrent.futures import ThreadPoolExecutor
 
 # === CONFIG ===
-COL_URL = "URL"
-COL_INVOICE = "Num Facture"
-COL_FIRSTNAME = "Prénom"
-COL_LASTNAME = "Nom"
 MAX_WORKERS = 5
+
+COL_CANDIDATES = {
+    "url":       ["URL", "Url", "url", "Link", "Lien"],
+    "invoice":   ["Num Facture", "Invoice Number", "Invoice", "Facture", "Num Invoice"],
+    "firstname": ["Prénom", "Firstname", "First Name", "First_Name", "Prenom"],
+    "lastname":  ["Nom", "Lastname", "Last Name", "Last_Name", "Name"],
+}
+
+def detect_col(df, candidates):
+    for c in candidates:
+        if c in df.columns:
+            return c
+    return None
 
 # === PAGE ===
 st.set_page_config(
@@ -95,13 +104,22 @@ if uploaded_file:
     df = pd.read_excel(uploaded_file)
     st.success(f"✅ Fichier chargé : **{len(df)} lignes** détectées")
 
-    # Vérification des colonnes
-    required_cols = [COL_URL, COL_INVOICE, COL_FIRSTNAME, COL_LASTNAME]
-    missing = [c for c in required_cols if c not in df.columns]
+    # Détection automatique des colonnes (FR ou EN)
+    COL_URL       = detect_col(df, COL_CANDIDATES["url"])
+    COL_INVOICE   = detect_col(df, COL_CANDIDATES["invoice"])
+    COL_FIRSTNAME = detect_col(df, COL_CANDIDATES["firstname"])
+    COL_LASTNAME  = detect_col(df, COL_CANDIDATES["lastname"])
+
+    missing = [label for label, val in {
+        "URL / Link": COL_URL,
+        "Num Facture / Invoice": COL_INVOICE,
+        "Prénom / Firstname": COL_FIRSTNAME,
+        "Nom / Lastname": COL_LASTNAME
+    }.items() if val is None]
 
     if missing:
-        st.error(f"❌ Colonnes manquantes dans votre Excel : `{'`, `'.join(missing)}`")
-        st.info(f"Colonnes trouvées : `{'`, `'.join(df.columns.tolist())}`")
+        st.error(f"❌ Colonnes non détectées : `{'`, `'.join(missing)}`")
+        st.info(f"Colonnes trouvées dans le fichier : `{'`, `'.join(df.columns.tolist())}`")
         st.stop()
 
     st.dataframe(df[[COL_INVOICE, COL_FIRSTNAME, COL_LASTNAME]].head(10), use_container_width=True)
