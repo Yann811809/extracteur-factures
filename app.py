@@ -29,6 +29,7 @@ COMPANY_MAP = {
     "NOMBLOT VILLEFRANCHE - Free2move (F) VILLEFRANCHE-SUR-SAONE":                        "Villefranche_Fiat",
     "NOMBLOT VILLEFRANCHE - Free2move (J) VILLEFRANCHE-SUR-SAONE":                        "Villefranche_Jeep",
     "NOMBLOT VILLEFRANCHE - Free2move (O) VILLEFRANCHE-SUR-SAONE":                        "Villefranche_Opel",
+    "FREE2MOVE RENT - NOMBLOT AUTOMOBILES SAS (C) VILLEFRANCHE S/SAONE CEDEX":            "Villefranche_AC"  
 }
 
 def detect_col(df, candidates):
