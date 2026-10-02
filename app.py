@@ -29,7 +29,9 @@ COMPANY_MAP = {
     "NOMBLOT VILLEFRANCHE - Free2move (F) VILLEFRANCHE-SUR-SAONE":                        "Villefranche_Fiat",
     "NOMBLOT VILLEFRANCHE - Free2move (J) VILLEFRANCHE-SUR-SAONE":                        "Villefranche_Jeep",
     "NOMBLOT VILLEFRANCHE - Free2move (O) VILLEFRANCHE-SUR-SAONE":                        "Villefranche_Opel",
-    "FREE2MOVE RENT - NOMBLOT AUTOMOBILES SAS (C) VILLEFRANCHE S/SAONE CEDEX":            "Villefranche_AC"  
+    "FREE2MOVE RENT - NOMBLOT AUTOMOBILES SAS (C) VILLEFRANCHE S/SAONE CEDEX" :          "Villefranche_AC",
+    "NOMBLOT CHALON - Free2move (C) CHALON SUR SAONE" :                                  "Chalon AC",
+    "NOMBLOT CHALON - Free2move (D) Chalon sur Saone" :                                  "Chalon DS"  
 }
 
 def detect_col(df, candidates):
@@ -64,8 +66,14 @@ st.markdown("Téléchargez votre fichier Excel, puis récupérez tous les PDF en
 st.info("""
 **📋 Comment préparer votre fichier Excel ?**
 
-Votre fichier `.xlsx` doit contenir exactement ces 4 colonnes :
+➡️ Pour récupérer les URL : connectez-vous sur [free2move.com](https://free2move.rent/nimda/), \
+Afin de savoir comment accéder à “l'Export pour la gestion comptable des factures", il faut suivre les étapes suivantes :
+• Aller dans le menu “Location de voiture”, onglet “Exports” et choisir l’export “Invoices PSA”
+• Remplir les informations nécessaires et exporter
 
+• L'export vous est transmis par notification, où vous pouvez le télécharger.
+
+Votre fichier .xlsx doit contenir exactement ces 4 colonnes :
 | Colonne | Description |
 |---|---|
 | `URL` | Lien vers la facture sur Free2Move |
@@ -73,10 +81,6 @@ Votre fichier `.xlsx` doit contenir exactement ces 4 colonnes :
 | `Prénom` | Prénom du client |
 | `Nom` | Nom du client |
 | `Principal` ou `Societe` | Nom de la société |
-
-➡️ Pour récupérer les URL : connectez-vous sur [free2move.com](https://www.free2move.com), \
-allez dans **Mes Factures**, faites un clic droit sur chaque facture → **Copier le lien**, \
-et collez-le dans la colonne `URL` de votre Excel.
 """)
 
 # === SESSION ===
