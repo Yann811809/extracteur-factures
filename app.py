@@ -95,9 +95,9 @@ def build_pdf_url(url):
     base = url.split("/invoices/")[1]
     invoice_id = base.split("?")[0]
     key = base.split("key=")[1]
-    inner_url = f"https://www.free2move.com/invoice/print/invoices/{invoice_id}?key={key}"
+    inner_url = f"https://www.free2move.rent/invoice/print/invoices/{invoice_id}?key={key}"
     encoded = urllib.parse.quote(inner_url, safe="")
-    return f"https://www.free2move.com/api/media/{encoded}"
+    return f"https://www.free2move.rent/api/media/{encoded}"
 
 def download_row(row, col_url, col_invoice, col_firstname, col_lastname, col_company):
     try:
